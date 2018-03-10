@@ -2202,15 +2202,15 @@ def _generate_regular_range(start, end, periods, offset):
 def date_range(start=None, end=None, periods=None, freq='D', tz=None,
                normalize=False, name=None, closed=None, **kwargs):
     """
-    Return a fixed frequency DatetimeIndex, with day (calendar) as the default
-    frequency
+    Returns a fixed frequency DatetimeIndex, with day (calendar) as the default
+    frequency.
 
     Parameters
     ----------
     start : string or datetime-like, default None
-        Left bound for generating dates
+        Left bound(Start Date) for generating dates
     end : string or datetime-like, default None
-        Right bound for generating dates
+        Right bound(End Date) for generating dates
     periods : integer, default None
         Number of periods to generate
     freq : string or DateOffset, default 'D' (calendar daily)
@@ -2237,7 +2237,22 @@ def date_range(start=None, end=None, periods=None, freq='D', tz=None,
     Returns
     -------
     rng : DatetimeIndex
+    
+    Examples
+    --------
+    >>> pd.date_range("2018-01-01", "2018-01-05")
+    DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',
+                    '2018-01-05'],
+                    dtype='datetime64[ns]', freq='D')
+    
+    >>> pd.date_range("2018-01-01", period=5)
+    DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',
+                    '2018-01-05'],
+                    dtype='datetime64[ns]', freq='D')
+    
+    
     """
+
     return DatetimeIndex(start=start, end=end, periods=periods,
                          freq=freq, tz=tz, normalize=normalize, name=name,
                          closed=closed, **kwargs)
